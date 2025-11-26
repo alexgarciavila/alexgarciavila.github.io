@@ -1,0 +1,863 @@
+/* ============================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+   ============================================ */
+:root {
+    /* Colores de fondo */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-terminal: #1a1a1a;
+    --bg-header: #2d2d2d;
+    --bg-header-hover: #3d3d3d;
+    
+    /* Colores de texto */
+    --text-primary: #e6e6e6;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    
+    /* Colores de terminal */
+    --green-terminal: #00ff41;
+    --green-dim: #4af626;
+    --cyan-terminal: #00d9ff;
+    --yellow-terminal: #ffcc00;
+    --red-terminal: #ff5555;
+    --purple-terminal: #bd93f9;
+    --blue-terminal: #58a6ff;
+    --orange-terminal: #ffb347;
+    
+    /* Colores de UI */
+    --border-color: #30363d;
+    --glow-color: rgba(0, 255, 65, 0.4);
+    --btn-close: #ff5f56;
+    --btn-minimize: #ffbd2e;
+    --btn-maximize: #27c93f;
+    
+    /* Tipografía */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Bordes */
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+}
+
+/* ============================================
+   RESET Y BASE
+   ============================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-mono);
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-terminal);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============================================
+   VENTANA DE TERMINAL
+   ============================================ */
+.terminal-window {
+    width: 100%;
+    max-width: 900px;
+    background: var(--bg-terminal);
+    border-radius: var(--border-radius);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(0, 255, 65, 0.1);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+/* ============================================
+   BARRA DE TÍTULO - ESTILO LINUX/GTK
+   ============================================ */
+.terminal-header {
+    background: var(--bg-header);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    user-select: none;
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.terminal-icon {
+    color: var(--green-terminal);
+    font-weight: 700;
+}
+
+.terminal-title-text {
+    color: var(--text-primary);
+}
+
+.terminal-controls {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.control-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: var(--bg-header-hover);
+}
+
+.control-btn.minimize:hover {
+    color: var(--btn-minimize);
+}
+
+.control-btn.maximize:hover {
+    color: var(--btn-maximize);
+}
+
+.control-btn.close:hover {
+    background: var(--btn-close);
+    color: white;
+}
+
+/* ============================================
+   CUERPO DEL TERMINAL
+   ============================================ */
+.terminal-body {
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+/* Selector de idioma */
+.language-selector {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    z-index: 10;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+    border-color: var(--green-terminal);
+    color: var(--green-terminal);
+}
+
+.lang-btn.active {
+    background: var(--green-terminal);
+    color: var(--bg-terminal);
+    border-color: var(--green-terminal);
+    font-weight: 700;
+}
+
+.lang-separator {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* ============================================
+   OUTPUT DEL TERMINAL
+   ============================================ */
+.terminal-output {
+    min-height: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: var(--spacing-lg);
+    padding-right: var(--spacing-sm);
+}
+
+/* Línea de comando */
+.command-line {
+    margin-bottom: var(--spacing-md);
+}
+
+.prompt-user {
+    color: var(--green-terminal);
+    font-weight: 700;
+}
+
+.prompt-separator {
+    color: var(--text-secondary);
+}
+
+.prompt-path {
+    color: var(--blue-terminal);
+}
+
+.prompt-symbol {
+    color: var(--text-primary);
+    margin-left: var(--spacing-xs);
+}
+
+.command-text {
+    color: var(--yellow-terminal);
+    margin-left: var(--spacing-sm);
+}
+
+/* Output de resultados */
+.output-block {
+    margin: var(--spacing-md) 0;
+    padding-left: var(--spacing-md);
+    border-left: 2px solid var(--border-color);
+}
+
+.output-title {
+    color: var(--cyan-terminal);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.output-subtitle {
+    color: var(--purple-terminal);
+    font-size: 1rem;
+    font-weight: 500;
+    margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+}
+
+.output-text {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.output-highlight {
+    color: var(--green-terminal);
+    font-weight: 500;
+}
+
+.output-muted {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.output-link {
+    color: var(--blue-terminal);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.output-link:hover {
+    color: var(--cyan-terminal);
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+}
+
+/* ============================================
+   CURSOR DE TERMINAL
+   ============================================ */
+.cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: var(--green-terminal);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cursor.typing {
+    animation: none;
+    opacity: 1;
+}
+
+/* ============================================
+   INPUT DE TERMINAL
+   ============================================ */
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    margin-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    margin-left: var(--spacing-sm);
+    caret-color: var(--green-terminal);
+}
+
+.terminal-input::placeholder {
+    color: var(--text-muted);
+}
+
+.terminal-input:focus {
+    outline: none;
+}
+
+/* ============================================
+   EXPERIENCIA - TIMELINE
+   ============================================ */
+.experience-item {
+    position: relative;
+    padding-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border-left: 2px solid var(--border-color);
+}
+
+.experience-item::before {
+    content: '●';
+    position: absolute;
+    left: -7px;
+    top: 0;
+    color: var(--green-terminal);
+    font-size: 0.75rem;
+}
+
+.experience-item.current::before {
+    color: var(--cyan-terminal);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.experience-date {
+    color: var(--yellow-terminal);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.experience-role {
+    color: var(--green-terminal);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: var(--spacing-xs) 0;
+}
+
+.experience-company {
+    color: var(--cyan-terminal);
+    font-size: 0.9375rem;
+}
+
+.experience-location {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.experience-tasks {
+    list-style: none;
+    margin-top: var(--spacing-sm);
+}
+
+.experience-tasks li {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    padding-left: var(--spacing-md);
+    position: relative;
+    margin-bottom: var(--spacing-xs);
+}
+
+.experience-tasks li::before {
+    content: '├──';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.experience-tasks li:last-child::before {
+    content: '└──';
+}
+
+/* ============================================
+   EDUCACIÓN
+   ============================================ */
+.education-item {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--purple-terminal);
+}
+
+.education-degree {
+    color: var(--green-terminal);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.education-school {
+    color: var(--cyan-terminal);
+    font-size: 0.9375rem;
+    margin: var(--spacing-xs) 0;
+}
+
+.education-year {
+    color: var(--yellow-terminal);
+    font-size: 0.8125rem;
+}
+
+.education-skills {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.skill-tag {
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--green-terminal);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.75rem;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+/* ============================================
+   SKILLS - BARRAS DE PROGRESO
+   ============================================ */
+.skills-category {
+    margin-bottom: var(--spacing-lg);
+}
+
+.skills-category-title {
+    color: var(--cyan-terminal);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.skills-category-title::before {
+    content: '>';
+    color: var(--green-terminal);
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-md);
+}
+
+.skill-name {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    min-width: 140px;
+}
+
+.skill-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-terminal), var(--cyan-terminal));
+    border-radius: 4px;
+    transition: width 1s ease-out;
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.skill-level {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    min-width: 40px;
+    text-align: right;
+}
+
+/* Skill tags inline */
+.skills-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+/* Skills como tags */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+/* ============================================
+   CERTIFICACIONES
+   ============================================ */
+.cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+.cert-icon {
+    font-size: 1.5rem;
+}
+
+.cert-info {
+    flex: 1;
+}
+
+.cert-name {
+    color: var(--green-terminal);
+    font-weight: 700;
+    font-size: 0.9375rem;
+}
+
+.cert-issuer {
+    color: var(--cyan-terminal);
+    font-size: 0.875rem;
+}
+
+.cert-date {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+}
+
+/* ============================================
+   CONTACTO
+   ============================================ */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+}
+
+.contact-icon {
+    font-size: 1.25rem;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-label {
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.contact-value {
+    color: var(--green-terminal);
+}
+
+/* ============================================
+   BOTONERA DE COMANDOS
+   ============================================ */
+.command-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.cmd-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    min-width: 120px;
+}
+
+.cmd-btn:hover {
+    background: var(--bg-header);
+    border-color: var(--green-terminal);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    transform: translateY(-2px);
+}
+
+.cmd-btn:active {
+    transform: translateY(0);
+}
+
+.cmd-btn .prompt {
+    color: var(--green-terminal);
+    font-weight: 700;
+}
+
+.cmd-btn:hover .prompt {
+    text-shadow: 0 0 8px var(--glow-color);
+}
+
+/* Estado activo/seleccionado */
+.cmd-btn.active {
+    background: var(--green-terminal);
+    color: var(--bg-terminal);
+    border-color: var(--green-terminal);
+}
+
+.cmd-btn.active .prompt {
+    color: var(--bg-terminal);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+}
+
+.footer a {
+    color: var(--green-terminal);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Efecto de glow en texto importante */
+.glow {
+    text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+}
+
+/* Efecto scanlines opcional */
+.scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+    
+    .terminal-window {
+        border-radius: var(--border-radius-sm);
+    }
+    
+    .terminal-body {
+        padding: var(--spacing-md);
+    }
+    
+    .terminal-output {
+        max-height: 400px;
+        min-height: 250px;
+    }
+    
+    .language-selector {
+        position: static;
+        margin-bottom: var(--spacing-md);
+        justify-content: flex-end;
+    }
+    
+    .command-buttons {
+        justify-content: center;
+    }
+    
+    .cmd-btn {
+        font-size: 0.8125rem;
+        padding: var(--spacing-sm);
+    }
+    
+    .skill-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .skill-name {
+        min-width: auto;
+    }
+    
+    .skill-bar {
+        width: 100%;
+    }
+    
+    .skill-level {
+        text-align: left;
+    }
+    
+    .experience-item {
+        padding-left: var(--spacing-md);
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .terminal-header {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .terminal-title-text {
+        display: none;
+    }
+    
+    .cmd-btn {
+        flex: 1 1 calc(50% - var(--spacing-sm));
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   ACCESIBILIDAD - REDUCIR MOVIMIENTO
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .cursor {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* Focus visible para navegación por teclado */
+:focus-visible {
+    outline: 2px solid var(--green-terminal);
+    outline-offset: 2px;
+}
+
+/* Skip link para accesibilidad */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--green-terminal);
+    color: var(--bg-terminal);
+    padding: var(--spacing-sm) var(--spacing-md);
+    z-index: 100;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}

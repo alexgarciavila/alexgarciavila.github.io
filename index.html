@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Àlex Garcia Vilà - Sysadmin & IT Specialist. Administrador de Sistemas con más de 20 años de experiencia en el sector tecnológico.">
+    <meta name="keywords" content="sysadmin, administrador sistemas, IT specialist, seguridad informática, Linux, Windows Server, redes">
+    <meta name="author" content="Àlex Garcia Vilà">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alexgarciavila.github.io/">
+    <meta property="og:title" content="Àlex Garcia Vilà | Sysadmin & IT Specialist">
+    <meta property="og:description" content="Administrador de Sistemas con más de 20 años de experiencia. Portfolio profesional.">
+    <meta property="og:image" content="https://alexgarciavila.github.io/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Àlex Garcia Vilà | Sysadmin & IT Specialist">
+    <meta name="twitter:description" content="Administrador de Sistemas con más de 20 años de experiencia. Portfolio profesional.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>Àlex Garcia Vilà | Sysadmin & IT Specialist</title>
+</head>
+<body>
+    <div class="terminal-window">
+        <!-- Barra de título estilo Linux/GTK -->
+        <div class="terminal-header">
+            <div class="terminal-title">
+                <span class="terminal-icon">❯_</span>
+                <span class="terminal-title-text">alex@portfolio:~</span>
+            </div>
+            <div class="terminal-controls">
+                <button class="control-btn minimize" aria-label="Minimizar">─</button>
+                <button class="control-btn maximize" aria-label="Maximizar">□</button>
+                <button class="control-btn close" aria-label="Cerrar">✕</button>
+            </div>
+        </div>
+        
+        <!-- Área de contenido del terminal -->
+        <div class="terminal-body">
+            <!-- Selector de idioma -->
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="es" aria-label="Español">ES</button>
+                <span class="lang-separator">|</span>
+                <button class="lang-btn" data-lang="ca" aria-label="Català">CA</button>
+            </div>
+            
+            <!-- Output del terminal -->
+            <div class="terminal-output" id="terminal-output" role="log" aria-live="polite">
+                <!-- El contenido se genera dinámicamente -->
+            </div>
+            
+            <!-- Input de línea de comandos -->
+            <div class="terminal-input-line" id="terminal-input-line">
+                <span class="prompt-user">alex</span><span class="prompt-separator">@</span><span class="prompt-user">portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Entrada de comandos">
+            </div>
+            
+            <!-- Botonera de comandos -->
+            <div class="command-buttons" id="command-buttons">
+                <button class="cmd-btn" data-cmd="whoami">
+                    <span class="prompt">$</span> whoami
+                </button>
+                <button class="cmd-btn" data-cmd="experience">
+                    <span class="prompt">$</span> experience
+                </button>
+                <button class="cmd-btn" data-cmd="education">
+                    <span class="prompt">$</span> education
+                </button>
+                <button class="cmd-btn" data-cmd="skills">
+                    <span class="prompt">$</span> skills
+                </button>
+                <button class="cmd-btn" data-cmd="certs">
+                    <span class="prompt">$</span> certs
+                </button>
+                <button class="cmd-btn" data-cmd="contact">
+                    <span class="prompt">$</span> contact
+                </button>
+                <button class="cmd-btn" data-cmd="help">
+                    <span class="prompt">$</span> help
+                </button>
+                <button class="cmd-btn" data-cmd="clear">
+                    <span class="prompt">$</span> clear
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Àlex Garcia Vilà · <span data-i18n="footer">Hecho con ❤️ y mucho café</span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/terminal.js"></script>
+</body>
+</html>
