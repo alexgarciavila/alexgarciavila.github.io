@@ -8,7 +8,7 @@ const i18n = {
         langName: 'Español',
         
         // Footer
-        footer: 'Hecho con ❤️ y mucho café',
+        footer: 'Construido en el lado oscuro de la Fuerza',
         
         // Mensajes del sistema
         welcome: `Bienvenido al portfolio de <span class="output-highlight">Àlex Garcia Vilà</span>
@@ -249,7 +249,7 @@ y la administración de sistemas.
         langName: 'Català',
         
         // Footer
-        footer: 'Fet amb ❤️ i molt cafè',
+        footer: 'Construït al costat fosc de la Força',
         
         // Mensajes del sistema
         welcome: `Benvingut al portfolio d'<span class="output-highlight">Àlex Garcia Vilà</span>

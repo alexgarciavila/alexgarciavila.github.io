@@ -39,8 +39,20 @@ class Terminal {
      */
     init() {
         this.bindEvents();
+        this.updateFooter();
         this.showWelcome();
         setTimeout(() => this.terminalInput.focus(), 100);
+    }
+    
+    /**
+     * Actualiza el texto del footer según el idioma actual
+     * @returns {void}
+     */
+    updateFooter() {
+        const footerText = document.querySelector('[data-i18n="footer"]');
+        if (footerText) {
+            footerText.textContent = this.t('footer');
+        }
     }
     
     /**
@@ -176,10 +188,7 @@ class Terminal {
         
         document.documentElement.lang = lang;
         
-        const footerText = document.querySelector('[data-i18n="footer"]');
-        if (footerText) {
-            footerText.textContent = this.t('footer');
-        }
+        this.updateFooter();
         
         if (commandToRerun && commandToRerun !== 'clear' && this.validCommands.includes(commandToRerun)) {
             this.clearTerminal();
