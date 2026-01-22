@@ -46,13 +46,44 @@ y la administración de sistemas.
         
         // Experiencia
         experienceTitle: 'Experiencia Laboral',
-        experience: [
+        experienceAreasTitle: '🔹 ÁREAS DE EXPERIENCIA',
+        experienceHistoryTitle: '--- HISTORIAL ---',
+        experiencePeriodCol: 'Periodo',
+        experienceCargoCol: 'Cargo',
+        experienceEmpresaCol: 'Empresa',
+        experience: {
+            summary: `Cuento con más de 20 años de experiencia gestionando infraestructuras tecnológicas, especialmente en el sector educativo y empresarial. Mi enfoque principal es el liderazgo de equipos técnicos y la optimización de sistemas para garantir entornos estables y eficientes.
+
+Mi experiencia se centra en:
+- <span class="output-highlight">Sistemas:</span> Especialista en administración de servidores y estaciones de trabajo.
+- <span class="output-highlight">Liderazgo:</span> Responsable de equipos técnicos y gestión avanzada de incidencias.
+- <span class="output-highlight">Automatización:</span> Optimización de procesos mediante la creación de automatizaciones.
+- <span class="output-highlight">Virtualización:</span> Despliegue y mantenimiento de entornos virtualizados.
+- <span class="output-highlight">Seguridad:</span> Implementación de medidas de seguridad y gestión de activos.
+- <span class="output-highlight">Backups:</span> Estrategias de recuperación y continuidad del servicio.`,
+            areas: [
+                {
+                    title: "Infraestructura y sistemas",
+                    items: [
+                        "Gestión de servidores y estaciones de trabajo Windows y Linux.",
+                        "Despliegue y orquestación de entornos virtuales con Proxmox y contenedores Docker.",
+                        "Gestión centralizada de seguridad y activos mediante consolas Kaspersky, Deep Freeze y PaperCut",
+                        "Automatización operativa avanzada utilizando Python, PowerShell, scripting y control de versiones con Git.",
+                        "Gestión de incidencias de servicios en entornos educativos a través de GLPI y BMC-Remedy",
+                        "Implementación de backups y recuperación para garantizar la integridad de los datos y la continuidad del servicio."
+                    ]
+                }
+            ],
+            historyIntro: `Este trabajo lo he desarrollado en distintos contextos:
+- Entornos educativos
+- Empresas privadas`,
+            history: [
             {
                 company: 'Group Saltó',
                 roles: [
                     {
                         title: 'Responsable de equipo de TI',
-                        period: '2023 - Actualidad',
+                        period: '2023 - XXXX',
                         duration: '2 años',
                         location: 'Reus, Cataluña · Remoto',
                         current: true,
@@ -65,9 +96,10 @@ y la administración de sistemas.
                         ]
                     },
                     {
-                        title: 'Técnico informático',
+                        title: 'Administrador informático',
                         period: '2013 - 2023',
-                        duration: '10 años',
+                        duration: '10 años ',
+                    
                         location: 'Reus, Cataluña',
                         current: false,
                         tasks: [
@@ -83,7 +115,7 @@ y la administración de sistemas.
                 company: 'Cloud Informàtica',
                 roles: [
                     {
-                        title: 'Técnico informático',
+                        title: 'Administrador informático',
                         period: '2013 - 2017',
                         duration: '4 años',
                         location: 'El Vendrell, Cataluña · Autónomo',
@@ -113,7 +145,7 @@ y la administración de sistemas.
                 company: 'Qb Informatica',
                 roles: [
                     {
-                        title: 'Técnico informático',
+                        title: 'Administrador informático',
                         period: '2009 - 2013',
                         duration: '4 años',
                         location: 'Granollers, Cataluña',
@@ -126,7 +158,7 @@ y la administración de sistemas.
                 company: '77TRES ARROBA SL',
                 roles: [
                     {
-                        title: 'Técnico informático',
+                        title: 'Administrador informático',
                         period: '2007 - 2009',
                         duration: '2 años',
                         location: 'Barcelona, Cataluña',
@@ -139,7 +171,7 @@ y la administración de sistemas.
                 company: 'Anursis',
                 roles: [
                     {
-                        title: 'Técnico informático',
+                        title: 'Administrador informático',
                         period: '2006 - 2007',
                         duration: '1 año',
                         location: 'Barcelona, Cataluña',
@@ -152,7 +184,7 @@ y la administración de sistemas.
                 company: 'AMALTEA NETWORKS SL',
                 roles: [
                     {
-                        title: 'Técnico informático',
+                        title: 'Administrador informático',
                         period: '2004 - 2006',
                         duration: '2 años',
                         location: 'Barcelona, Cataluña',
@@ -161,7 +193,8 @@ y la administración de sistemas.
                     }
                 ]
             }
-        ],
+        ]
+        },
         
         // Educación
         educationTitle: 'Formación Académica',
@@ -287,13 +320,44 @@ i l'administració de sistemes.
         
         // Experiencia
         experienceTitle: 'Experiència Laboral',
-        experience: [
+        experienceAreasTitle: '🔹 ÀREES D\'EXPERIÈNCIA',
+        experienceHistoryTitle: '--- HISTORIAL ---',
+        experiencePeriodCol: 'Període',
+        experienceCargoCol: 'Càrrec',
+        experienceEmpresaCol: 'Empresa',
+        experience: {
+            summary: `Compto amb més de 20 anys d'experiència gestionant infraestructures tecnològiques, especialment en el sector educatiu i empresarial. El meu enfocament principal és el lideratge d'equips tècnics i l'optimització de sistemes per garantir entorns estables i eficients.
+
+La meva experiència se centra en:
+- <span class="output-highlight">Sistemes:</span> Especialista en administració de servidors i estacions de treball.
+- <span class="output-highlight">Lideratge:</span> Responsable d'equips tècnics i gestió avançada d'incidències.
+- <span class="output-highlight">Automatització:</span> Optimització de processos mitjançant la creació d'automatitzacions.
+- <span class="output-highlight">Virtualització:</span> Desplegament i manteniment d'entorns virtualitzats.
+- <span class="output-highlight">Seguretat:</span> Implementació de mesures de seguretat i gestió d'actius.
+- <span class="output-highlight">Backups:</span> Estratègies de recuperació i continuïtat del servei.`,
+            areas: [
+                {
+                    title: "Infraestructura i sistemes",
+                    items: [
+                        "Gestió de servidors i estacions de treball Windows i Linux.",
+                        "Desplegament i orquestració d'entorns virtuals amb Proxmox i contenidors Docker.",
+                        "Gestió centralitzada de seguretat i actius mitjançant consoles Kaspersky, Deep Freeze i PaperCut",
+                        "Automatització operativa avançada utilitzant Python, PowerShell, scripting i control de versions amb Git.",
+                        "Gestió d'incidències de serveis en entorns educatius a través de GLPI i BMC-Remedy",
+                        "Implementació de backups i recuperació per garantir la integritat de les dades i la continuïtat del servei."
+                    ]
+                }
+            ],
+            historyIntro: `Aquesta feina l'he desenvolupat en diferents contextos:
+- Entorns educatius
+- Empreses privades`,
+            history: [
             {
                 company: 'Group Saltó',
                 roles: [
                     {
                         title: 'Responsable d\'equip de TI',
-                        period: '2023 - Actualitat',
+                        period: '2023 - XXXX',
                         duration: '2 anys',
                         location: 'Reus, Catalunya · Remot',
                         current: true,
@@ -306,9 +370,10 @@ i l'administració de sistemes.
                         ]
                     },
                     {
-                        title: 'Tècnic informàtic',
+                        title: 'Administrador informàtic',
                         period: '2013 - 2023',
-                        duration: '10 anys',
+                        duration: '10 anys ',
+                    
                         location: 'Reus, Catalunya',
                         current: false,
                         tasks: [
@@ -324,7 +389,7 @@ i l'administració de sistemes.
                 company: 'Cloud Informàtica',
                 roles: [
                     {
-                        title: 'Tècnic informàtic',
+                        title: 'Administrador informàtic',
                         period: '2013 - 2017',
                         duration: '4 anys',
                         location: 'El Vendrell, Catalunya · Autònom',
@@ -354,7 +419,7 @@ i l'administració de sistemes.
                 company: 'Qb Informatica',
                 roles: [
                     {
-                        title: 'Tècnic informàtic',
+                        title: 'Administrador informàtic',
                         period: '2009 - 2013',
                         duration: '4 anys',
                         location: 'Granollers, Catalunya',
@@ -367,7 +432,7 @@ i l'administració de sistemes.
                 company: '77TRES ARROBA SL',
                 roles: [
                     {
-                        title: 'Tècnic informàtic',
+                        title: 'Administrador informàtic',
                         period: '2007 - 2009',
                         duration: '2 anys',
                         location: 'Barcelona, Catalunya',
@@ -380,7 +445,7 @@ i l'administració de sistemes.
                 company: 'Anursis',
                 roles: [
                     {
-                        title: 'Tècnic informàtic',
+                        title: 'Administrador informàtic',
                         period: '2006 - 2007',
                         duration: '1 any',
                         location: 'Barcelona, Catalunya',
@@ -393,7 +458,7 @@ i l'administració de sistemes.
                 company: 'AMALTEA NETWORKS SL',
                 roles: [
                     {
-                        title: 'Tècnic informàtic',
+                        title: 'Administrador informàtic',
                         period: '2004 - 2006',
                         duration: '2 anys',
                         location: 'Barcelona, Catalunya',
@@ -402,7 +467,8 @@ i l'administració de sistemes.
                     }
                 ]
             }
-        ],
+        ]
+        },
         
         // Educación
         educationTitle: 'Formació Acadèmica',

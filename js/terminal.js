@@ -449,23 +449,53 @@ ${this.t('whoamiDesc')}
         const experience = this.t('experience');
         let html = `<div class="output-title">${this.t('experienceTitle')}</div>\n`;
         
-        experience.forEach(company => {
-            company.roles.forEach(role => {
-                const currentClass = role.current ? ' current' : '';
+        // Nivel 1: Resumen / Intro
+        if (experience.summary) {
+            html += `<div class="output-text" style="white-space: pre-wrap; margin-bottom: 1.5rem;">${experience.summary}</div>\n`;
+        }
+
+        // Nivel 2: Áreas de experiencia
+        if (experience.areas && experience.areas.length > 0) {
+            html += `<div class="output-subtitle">${this.t('experienceAreasTitle')}</div>\n`;
+            experience.areas.forEach(area => {
                 html += `
-<div class="experience-item${currentClass}">
-    <div class="experience-date">${role.period} · ${role.duration}</div>
-    <div class="experience-role">${role.title}</div>
-    <div class="experience-company">${company.company}</div>
-    <div class="experience-location">${role.location}</div>
-    ${role.tasks.length > 0 ? `
+<div class="area-item" style="margin-bottom: 1rem;">
+    <div class="output-highlight" style="margin-bottom: 0.5rem;">${area.title}</div>
     <ul class="experience-tasks">
-        ${role.tasks.map(task => `<li>${task}</li>`).join('\n        ')}
-    </ul>` : ''}
+        ${area.items.map(item => `<li>${item}</li>`).join('\n        ')}
+    </ul>
 </div>
 `;
             });
-        });
+        }
+
+        // Nivel 3: Contexto e Historial
+        if (experience.historyIntro) {
+            html += `<div class="output-text" style="margin-top: 1.5rem; margin-bottom: 1rem; white-space: pre-wrap;">${experience.historyIntro}</div>\n`;
+        }
+
+        if (experience.history && experience.history.length > 0) {
+            html += `<div class="output-subtitle">${this.t('experienceHistoryTitle')}</div>\n`;
+            html += `<pre class="output-text" style="margin-top: 1rem;">`;
+            
+            const c1 = 24, c2 = 30, c3 = 22;
+            
+            html += `<span style="color: var(--cyan-terminal);">┌${'─'.repeat(c1)}┬${'─'.repeat(c2)}┬${'─'.repeat(c3)}┐\n`;
+            html += `│${this.t('experiencePeriodCol').padStart(12).padEnd(c1)}│${this.t('experienceCargoCol').padStart(18).padEnd(c2)}│${this.t('experienceEmpresaCol').padStart(14).padEnd(c3)}│\n`;
+            html += `├${'─'.repeat(c1)}┼${'─'.repeat(c2)}┼${'─'.repeat(c3)}┤</span>\n`;
+            
+            experience.history.forEach(company => {
+                company.roles.forEach(role => {
+                    const period = ` ${role.period} · ${role.duration}`.padEnd(c1);
+                    const title = ` ${role.title}`.padEnd(c2);
+                    const companyName = ` ${company.company}`.padEnd(c3);
+                    html += `<span style="color: var(--cyan-terminal);">│</span><span style="color: var(--yellow-terminal);">${period}</span><span style="color: var(--cyan-terminal);">│</span><span style="color: var(--green-terminal);">${title}</span><span style="color: var(--cyan-terminal);">│</span><span style="color: var(--text-primary);">${companyName}</span><span style="color: var(--cyan-terminal);">│</span>\n`;
+                });
+            });
+            
+            html += `<span style="color: var(--cyan-terminal);">└${'─'.repeat(c1)}┴${'─'.repeat(c2)}┴${'─'.repeat(c3)}┘</span>\n`;
+            html += `</pre>`;
+        }
         
         return html;
     }
