@@ -9,4 +9,10 @@ Thumbs.db
 .opencode/
 .specify/
 
+# Coverage (tests)
+coverage/
+
+# Node dependencies
+node_modules/
+
 

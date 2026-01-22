@@ -612,3 +612,6 @@ ${this.t('whoamiDesc')}
 document.addEventListener('DOMContentLoaded', () => {
     window.terminal = new Terminal();
 });
+
+// Exportar clase para pruebas unitarias
+export { Terminal };

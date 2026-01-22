@@ -37,7 +37,7 @@ Usa <span class="output-highlight">help</span> para ver los comandos disponibles
         whoamiLocation: '📍 Cataluña, España',
         whoamiRole: '💼 Responsable de equipo de TI @ Group Saltó',
         whoamiFocus: '🎯 Administración de Sistemas & Seguridad Informática',
-        whoamiDesc: `Administrador de Sistemas en formación como Ingeniero de Sistemas y Seguridad Informática. 
+        whoamiDesc: `Ingeniero de Sistemas y Seguridad Informática. 
 Profesional proactivo y apasionado por la tecnología, con una actitud de aprendizaje 
 continuo y una gran motivación para afrontar nuevos retos en el ámbito de la seguridad 
 y la administración de sistemas.
@@ -311,7 +311,7 @@ Escriu <span class="output-highlight">help</span> per veure les comandes disponi
         whoamiLocation: '📍 Catalunya, Espanya',
         whoamiRole: '💼 Responsable d\'equip de TI @ Group Saltó',
         whoamiFocus: '🎯 Administració de Sistemes & Seguretat Informàtica',
-        whoamiDesc: `Administrador de Sistemes en formació com a Enginyer de Sistemes i Seguretat Informàtica. 
+        whoamiDesc: `Enginyer de Sistemes i Seguretat Informàtica. 
 Professional proactiu i apassionat per la tecnologia, amb una actitud d'aprenentatge 
 continu i una gran motivació per afrontar nous reptes en l'àmbit de la seguretat 
 i l'administració de sistemes.
