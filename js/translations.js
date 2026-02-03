@@ -12,7 +12,7 @@ const i18n = {
         
         // Mensajes del sistema
         welcome: `Bienvenido al portfolio de <span class="output-highlight">Àlex Garcia Vilà</span>
-Sysadmin & IT Specialist
+Sysadmin & IT Engineer
 
 <br>Escribe un comando o haz clic en los botones de abajo.</br>
 Usa <span class="output-highlight">help</span> para ver los comandos disponibles.`,
@@ -33,7 +33,7 @@ Usa <span class="output-highlight">help</span> para ver los comandos disponibles
         
         // Whoami
         whoamiName: 'ÀLEX GARCIA VILÀ',
-        whoamiTitle: 'Sysadmin & IT Specialist',
+        whoamiTitle: 'Sysadmin & IT Engineer',
         whoamiLocation: '📍 Cataluña, España',
         whoamiRole: '💼 Responsable de equipo de TI @ Group Saltó',
         whoamiFocus: '🎯 Administración de Sistemas & Seguridad Informática',
@@ -286,7 +286,7 @@ Mi experiencia se centra en:
         
         // Mensajes del sistema
         welcome: `Benvingut al portfolio d'<span class="output-highlight">Àlex Garcia Vilà</span>
-Sysadmin & IT Specialist
+Sysadmin & IT Engineer
 
 <br>Escriu una comanda o fes clic als botons de sota.
 Escriu <span class="output-highlight">help</span> per veure les comandes disponibles.`,
@@ -307,7 +307,7 @@ Escriu <span class="output-highlight">help</span> per veure les comandes disponi
         
         // Whoami
         whoamiName: 'ÀLEX GARCIA VILÀ',
-        whoamiTitle: 'Sysadmin & IT Specialist',
+        whoamiTitle: 'Sysadmin & IT Engineer',
         whoamiLocation: '📍 Catalunya, Espanya',
         whoamiRole: '💼 Responsable d\'equip de TI @ Group Saltó',
         whoamiFocus: '🎯 Administració de Sistemes & Seguretat Informàtica',
